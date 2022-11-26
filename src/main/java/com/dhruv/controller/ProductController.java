@@ -5,6 +5,7 @@ import com.dhruv.service.ProductService;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -13,6 +14,12 @@ public class ProductController {
 
     @Autowired
     private ProductService service;
+
+    //Default home page loading endpoint
+    @GetMapping("/")
+    public ModelAndView home(){
+        return new ModelAndView("index");
+    }
 
     //add a single product method
     //tested: working fine
