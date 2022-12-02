@@ -21,6 +21,12 @@ public class ProductController {
         return new ModelAndView("index");
     }
 
+    //redirection to Create product page
+    @GetMapping("/createProduct")
+    public ModelAndView createPage() {
+        return new ModelAndView("create");
+    }
+
     //add a single product method
     //tested: working fine
     @PostMapping("/addProduct")
