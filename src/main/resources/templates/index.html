@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Home Page</title>
@@ -8,6 +8,8 @@
     <link href="/static/index.css">
 </head>
 <body>
+
+<!--git push -u origin main -> to push the data into github-->
     <header class="container-fluid mt-1">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -83,7 +85,7 @@
                 $('<tr>').append($('<td>').text(item.id),
                     $('<td>').text(item.name),
                     $('<td>').text(item.color),
-                    $('<td>').text(item.price)
+                    $('<td>').text("$"+item.price)
                 ).appendTo('.tblMain')
             });
         }

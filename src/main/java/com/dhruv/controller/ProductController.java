@@ -2,7 +2,6 @@ package com.dhruv.controller;
 
 import com.dhruv.model.Product;
 import com.dhruv.service.ProductService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,11 +15,15 @@ public class ProductController {
     private ProductService service;
 
     //Default home page loading endpoint
-    @GetMapping("/")
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView home(){
         return new ModelAndView("index");
     }
 
+    @GetMapping("/create")
+    public ModelAndView create(){
+        return new ModelAndView("create");
+    }
     //redirection to Create product page
     @GetMapping("/createProduct")
     public ModelAndView createPage() {
