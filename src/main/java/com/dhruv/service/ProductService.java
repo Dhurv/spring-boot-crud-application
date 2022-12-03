@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -39,12 +40,15 @@ public class ProductService {
     }
 
     public Product updateProduct(Product product){
-        Product productFromDB = repository.findById(product.getId()).orElse(null);
-        System.out.println(productFromDB);
-        assert productFromDB != null;
-        productFromDB.setColor(product.getColor());
-        productFromDB.setPrice(product.getPrice());
-        productFromDB.setName(product.getName());
-        return repository.save(productFromDB);
+        Product product1 = repository.findById(product.getId()).orElse(null);
+        if (product1 != null){
+            product1.setId(product.getId());
+            product1.setName(product.getName());
+            product1.setColor(product.getColor());
+            product1.setPrice(product.getPrice());
+        }
+
+        assert product1 != null;
+        return repository.save(product1);
     }
 }

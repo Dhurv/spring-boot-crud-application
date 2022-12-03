@@ -3,6 +3,7 @@ package com.dhruv.controller;
 import com.dhruv.model.Product;
 import com.dhruv.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,8 +55,11 @@ public class ProductController {
     //get the product object by id
     //Tested: working fine
     @GetMapping("/getProductById/{id}")
-    public Product findProductById(@PathVariable long id){
-        return service.getProductById(id);
+    public ModelAndView findProductById(@PathVariable long id){
+        Product product = service.getProductById(id);
+        ModelAndView modelAndView =  new ModelAndView("update");
+        modelAndView.addObject("product", product);
+        return modelAndView;
     }
 
 
@@ -74,8 +78,7 @@ public class ProductController {
     }
 
     //update the product
-
-    @PutMapping("/update")
+    @PutMapping("/updateProduct")
     public Product updateProduct(@RequestBody Product product){
         return service.updateProduct(product);
     }
