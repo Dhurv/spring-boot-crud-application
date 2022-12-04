@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Home Page</title>
@@ -95,13 +95,12 @@
                             { data : "price"},
                             { data: null,
                                 render: function ( data, type, row, ) {
-
-                                    return '<a href="/getProductById/'+data.id+'" class="btn btn-primary">Edit</a>';
+                                    return '<a href="/getProductById/'+data.id+'" class="btn btn-primary">Edit</a>' +
+                                        '<a class="btn btn-danger delete_btn" data-id="'+row.id+'">Delete</a>';
                                 }
                             }
                         ]
                     });
-                    <!--MainTableData(msg);-->
                 },
                 failure : function (res){
                     alert(res.d);
@@ -109,12 +108,36 @@
                 error : function (res) {
                     alert(res.d);
                 }
-
             });
+
         });
 
+        $(document).on('click', '.delete_btn', function(event) {
+            const id = $(event.currentTarget).data("id");
+            if(confirm("Are you sure!!! You wanted to delete this product.")){
+                $.ajax({
+                    type : "DELETE",
+                    url: "/delete/" + id,
+                    contentType: "application/json",
 
+                    success : function (msg){
+                        alert("The product is deleted successfully.")
+                        window.location.href="http://localhost:9090/"
+                    },
+                    failure : function (res){
+                        alert(res.d);
+                    },
+                    error : function (res) {
+                        alert(res.d);
+                    }
+                });
+            }
+        });
 
+        function confirmUser(msg) {
+            console.log(msg)
+            alert(msg)
+        }
 
 
 </script>

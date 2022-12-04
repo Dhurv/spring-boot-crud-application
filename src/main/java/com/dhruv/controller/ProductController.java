@@ -72,7 +72,7 @@ public class ProductController {
 
     //delete a product
     //Tested: working fine
-    @DeleteMapping("/delete/{id}")
+        @DeleteMapping("/delete/{id}")
     public String deleteProduct (@PathVariable long id){
         return service.deleteProduct(id);
     }

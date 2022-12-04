@@ -95,6 +95,7 @@
                 data : JSON.stringify(result),
                 success : function (msg){
                     alert("Product added Successfully.")
+                    window.location.href="http://localhost:9090/"
                 },
                 failure : function (res){
                     alert(res.d);
